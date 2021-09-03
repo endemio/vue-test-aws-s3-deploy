@@ -4,6 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const autoprefixer = require("autoprefixer");
+const Dotenv = require('dotenv-webpack');
 const path = require("path");
 
 
@@ -83,6 +84,9 @@ module.exports = {
             patterns: [
                 {from: './src/assets/images',  to: 'images'}
             ]
+        }),
+        new Dotenv({
+            path: './.env', // Path to .env file (this is the default)
         }),
     ],
     resolve: {
