@@ -30,6 +30,12 @@ jobs:
           envkey_VUE_APP_CUSTOM_VARIABLE: ${{ secrets.VUE_APP_CUSTOM_VARIABLE }}
           file_name: .env
 
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+        run: npm run unit
+
       - name: Build Application
         run: npm run-script build
 
