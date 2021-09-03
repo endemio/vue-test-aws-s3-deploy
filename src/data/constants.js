@@ -2,8 +2,7 @@ export default class Constants {
 
     static size = [
         {
-            text: 'XXL',
-            value: 20
+            text: 'XXL', value: 20
         },
         {
             text: 'L',
