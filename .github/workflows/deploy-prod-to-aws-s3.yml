@@ -31,7 +31,7 @@ jobs:
           file_name: .env
 
       - name: Run test
-        run: npm test
+        run: npm run unit
 
       - uses: jakejarvis/s3-sync-action@master
         name: Upload App to S3 Bucket
