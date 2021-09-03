@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
-      AWS_CF_DISTRIBUTION_ID: ${{ secrets.AWS_SECRET_CLOUDFLARE_DISTRIBUTION_ID }}
+      AWS_CF_DISTRIBUTION_ID: ${{ secrets.AWS_SECRET_CLOUDFRONT_DISTRIBUTION_ID }}
     strategy:
       matrix:
         node-version: [10.x]
@@ -23,6 +23,12 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_VUE_APP_CUSTOM_VARIABLE: "Env variable exist on prod"
+          file_name: .env
 
       - name: Build Application
         run: npm run-script build
@@ -41,7 +47,7 @@ jobs:
       - name: Create CloudFront Cache Invalidation
         uses: chetan/invalidate-cloudfront-action@master
         env:
-          DISTRIBUTION: ${{ env.AWS_CF_DISTRIBUTION_ID }}
+          DISTRIBUTION: ${{ env.AWS_SECRET_CLOUDFRONT_DISTRIBUTION_ID }}
           PATHS: "/*"
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
