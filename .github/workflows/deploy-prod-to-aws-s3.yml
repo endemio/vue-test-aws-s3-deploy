@@ -34,7 +34,7 @@ jobs:
         run: npm run unit
 
       - name: Run build
-        run: npm run unit
+        run: npm run build
 
       - uses: jakejarvis/s3-sync-action@master
         name: Upload App to S3 Bucket
