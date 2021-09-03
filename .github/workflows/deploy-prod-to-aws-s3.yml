@@ -27,7 +27,7 @@ jobs:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
-          envkey_VUE_APP_CUSTOM_VARIABLE: "Env variable exist on prod"
+          envkey_VUE_APP_CUSTOM_VARIABLE: ${{ secrets.VUE_APP_CUSTOM_VARIABLE }}
           file_name: .env
 
       - name: Build Application
